@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import mockBookingAndCheckin from '../assets/mockBookingAndCheckIn.json';
 const seasonalLabels = [
 	'January',
 	'Febuary',
@@ -49,17 +50,30 @@ const threeYearsSeasonalIncomeData = {
 				10239, 10229, 10293, 11390, 12948, 12928, 13920, 13902, 13928,
 				15929, 16029, 17039
 			]
+		},
+		{
+			...seasonalChartOptions,
+			label: '2020',
+			data: [
+				18657, 18623, 18117, 18601, 18025, 16198, 19232, 21392, 23923,
+				22777, 21067, 20815
+			]
 		}
-		//FIXME: bug for v1
-		// {
-		// 	...seasonalChartOptions,
-		// 	label: '2020',
-		// 	data: [
-		// 		18657, 18623, 18117, 18601, 18025, 16198, 19232, 21392, 23923,
-		// 		22777, 21067, 20815
-		// 	]
-		// }
 	]
+};
+const bookingOneYear = Object.values(
+	mockBookingAndCheckin['bookings'][0]['2022']
+);
+const checkInOneYear = Object.values(
+	mockBookingAndCheckin['checkin'][0]['2022']
+);
+
+const response = {
+	data: {
+		booking: bookingOneYear,
+		checkin: checkInOneYear,
+	},
+	statusCode: '200',
 };
 
 const getOneYearSeasonalIncomeData = (req: Request, res: Response) => {
@@ -70,6 +84,7 @@ const getThreeYearsSeasonalIncomeData = (req: Request, res: Response) => {
 	return res.json(threeYearsSeasonalIncomeData);
 };
 
-// TODO: add getOneYearSeasonalBookingCheckInData here and export it
-
-export { getOneYearSeasonalIncomeData, getThreeYearsSeasonalIncomeData };
+const getOneYearSeasonalBookingCheckInData = (req: Request, res: Response) => {
+	return res.json(response);
+};
+export { getOneYearSeasonalIncomeData, getThreeYearsSeasonalIncomeData, getOneYearSeasonalBookingCheckInData };

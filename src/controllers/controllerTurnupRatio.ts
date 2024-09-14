@@ -10,9 +10,7 @@ export const sixMonthsTurnupRatioData = {
 	datasets: [
 		{
 			backgroundColor: '#9BD0F5',
-			data: [99, 98, 99, 97.5, 93]
-			// FIXME: create bug missing data for v1
-			// data: [99, 98, 99, 97.5, 93, 95]
+			data: [99, 98, 99, 97.5, 93, 95]
 		}
 	]
 };
@@ -39,6 +37,17 @@ export const twoYearsTurnupRatioData = {
 		}
 	]
 };
+
+export const oneYearSeasonalBookingCheckInData =
+{
+	data: {
+		booking: [10, 20, 30, 40, 50, 60],
+		checkin: [10, 20, 30, 40, 50, 60]
+	},
+	statusCode: 200,
+};
+
+
 const getSixMonthsTurnupRatioData = (req: Request, res: Response) => {
 	return res.json(sixMonthsTurnupRatioData);
 };
